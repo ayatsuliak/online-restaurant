@@ -1,0 +1,9 @@
+@echo off
+echo Running flake8...
+docker-compose exec web flake8 /app
+
+echo Running isort...
+docker-compose exec web isort /app --check-only --diff
+
+echo Running mypy...
+docker-compose exec web mypy /app
