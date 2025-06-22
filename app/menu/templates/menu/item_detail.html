@@ -1,0 +1,7 @@
+{% extends "menu/base.html" %}
+{% block content %}
+<h2>{{ item.name }}</h2>
+<p>{{ item.description }}</p>
+<p class="text-muted">Price: ${{ item.price }}</p>
+<a href="{% url 'menu:menu_list' %}" class="btn btn-outline-secondary mt-3">Back to Menu</a>
+{% endblock content %}

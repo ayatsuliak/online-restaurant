@@ -1,0 +1,16 @@
+{% extends "menu/base.html" %}
+{% block content %}
+    <h2>Your Orders</h2>
+    <ul class="list-group">
+        {% for order in orders %}
+            <li class="list-group-item">
+                <strong>Order #{{ order.id }}</strong><br>
+                Items: {{ order.items.all|join:", " }}<br>
+                Scheduled: {{ order.scheduled_time|date:"Y-m-d H:i" }}<br>
+                Delivered: {{ order.delivered }}
+            </li>
+        {% empty %}
+            <li class="list-group-item">You have no orders yet.</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

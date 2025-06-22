@@ -1,0 +1,8 @@
+{% extends "menu/base.html" %}
+{% block content %}
+    <div class="content-section">
+        <h2>Order Placed Successfully!</h2>
+        <p>Your order has been scheduled.</p>
+        <a class="btn btn-outline-info" href="{% url 'orders:order_list' %}">View My Orders</a>
+    </div>
+{% endblock content %}
