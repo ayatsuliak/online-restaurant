@@ -8,6 +8,8 @@ jobs:
     name: Test and Lint
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
       - name: Create dummy .env file for tests
         run: |
           echo "DEBUG=True" > .env
@@ -17,8 +19,6 @@ jobs:
           echo "REDIS_URL=redis://redis:6379" >> .env
           echo "EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend" >> .env
           echo "DEFAULT_FROM_EMAIL=restaurant@example.com" >> .env
-      - name: Checkout
-        uses: actions/checkout@v3
       - name: Test
         run: docker compose run --rm web python manage.py test
       - name: flake8
