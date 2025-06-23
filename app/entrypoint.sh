@@ -2,33 +2,18 @@
 set -e
 
 echo "Waiting for PostgreSQL using psycopg2..."
-python << END
-import time
-import psycopg2
-import os
 
-max_retries = 10
-retry_delay = 2
-
-for attempt in range(max_retries):
-    try:
-        conn = psycopg2.connect(
-            dbname=os.environ.get("POSTGRES_DB", "restaurant"),
-            user=os.environ.get("POSTGRES_USER", "restaurant_user"),
-            password=os.environ.get("POSTGRES_PASSWORD", "password"),
-            host="db",
-            port=5432
-        )
-        conn.close()
-        print("PostgreSQL is ready.")
-        break
-    except psycopg2.OperationalError:
-        print(f"PostgreSQL not ready (attempt {attempt + 1}/{max_retries}), retrying in {retry_delay}s...")
-        time.sleep(retry_delay)
-else:
-    print("PostgreSQL did not become ready in time.")
-    exit(1)
-END
+TRIES=0
+until python -c "import psycopg2; psycopg2.connect(dbname='${POSTGRES_DB}', user='${POSTGRES_USER}', password='${POSTGRES_PASSWORD}', host='db')" \
+    && echo "PostgreSQL is ready."; do
+    TRIES=$((TRIES+1))
+    if [ "$TRIES" -ge 30 ]; then
+        echo "PostgreSQL did not become ready in time."
+        exit 1
+    fi
+    echo "PostgreSQL not ready (attempt $TRIES/30), retrying in 2s..."
+    sleep 2
+done
 
 echo "Applying migrations..."
 python manage.py migrate
