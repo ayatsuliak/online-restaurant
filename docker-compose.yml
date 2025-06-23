@@ -21,7 +21,6 @@ services:
       args:
         - DEV=true
     command: ["celery", "-A", "app", "worker", "--loglevel=info"]
-    entrypoint: []
     volumes:
       - ./app:/app
     env_file:
@@ -37,7 +36,6 @@ services:
       args:
         - DEV=true
     command: ["celery", "-A", "app", "beat", "--loglevel=info"]
-    entrypoint: []
     volumes:
       - ./app:/app
     env_file:

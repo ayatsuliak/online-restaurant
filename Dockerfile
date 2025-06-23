@@ -28,10 +28,8 @@ RUN adduser --disabled-password django-user
 
 COPY ./app /app
 WORKDIR /app
-RUN chmod +x /app/entrypoint.sh
 RUN chown -R django-user /app
 
 USER django-user
 
 EXPOSE 8000
-ENTRYPOINT ["/app/entrypoint.sh"]
