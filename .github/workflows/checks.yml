@@ -20,7 +20,7 @@ jobs:
           echo "EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend" >> .env
           echo "DEFAULT_FROM_EMAIL=restaurant@example.com" >> .env
       - name: Rebuild image
-        run: docker-compose build --no-cache
+        run: docker compose build --no-cache
       - name: Test
         run: docker compose run --rm web python manage.py test
       - name: flake8
