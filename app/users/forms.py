@@ -33,8 +33,6 @@ class CustomAuthenticationForm(AuthenticationForm):
 
 
 class CustomUserUpdateForm(UserChangeForm):
-    # username = forms.CharField(label='Username', max_length=150)
-    # email = forms.EmailField(label='Email')
     password = None
 
     class Meta:

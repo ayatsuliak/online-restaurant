@@ -3,3 +3,4 @@ flake8
 mypy
 django-crispy-forms
 crispy-bootstrap5
+coverage
