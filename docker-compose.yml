@@ -1,10 +1,12 @@
+version: '3.9'
+
 services:
   web:
     build:
       context: .
       args:
         - DEV=true
-    command: python manage.py runserver 0.0.0.0:8000
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
     volumes:
       - ./app:/app
     ports:
@@ -14,6 +16,36 @@ services:
     depends_on:
       - db
       - redis
+
+  celery:
+    build:
+      context: .
+      args:
+        - DEV=true
+    command: ["celery", "-A", "app", "worker", "--loglevel=info"]
+    volumes:
+      - ./app:/app
+    env_file:
+      - .env
+    depends_on:
+      - web
+      - redis
+      - db
+
+  celery-beat:
+    build:
+      context: .
+      args:
+        - DEV=true
+    command: ["celery", "-A", "app", "beat", "--loglevel=info"]
+    volumes:
+      - ./app:/app
+    env_file:
+      - .env
+    depends_on:
+      - web
+      - redis
+      - db
 
   db:
     image: postgres:15
@@ -30,36 +62,6 @@ services:
     image: redis:7
     ports:
       - "6379:6379"
-
-  celery:
-    build:
-      context: .
-      args:
-        - DEV=true
-    command: celery -A app worker --loglevel=info
-    volumes:
-      - ./app:/app
-    env_file:
-      - .env
-    depends_on:
-      - web
-      - redis
-      - db
-
-  celery-beat:
-    build:
-      context: .
-      args:
-        - DEV=true
-    command: celery -A app beat --loglevel=info
-    volumes:
-      - ./app:/app
-    env_file:
-      - .env
-    depends_on:
-      - web
-      - redis
-      - db
 
 volumes:
   postgres_data:

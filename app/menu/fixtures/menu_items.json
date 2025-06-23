@@ -1,0 +1,92 @@
+[
+  {
+    "model": "menu.menuitem",
+    "pk": 1,
+    "fields": {
+      "name": "Margherita Pizza",
+      "description": "Classic pizza with mozzarella and tomato",
+      "price": 95
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 2,
+    "fields": {
+      "name": "Pepperoni Pizza",
+      "description": "Spicy pepperoni with cheese",
+      "price": 110
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 3,
+    "fields": {
+      "name": "Veggie Salad",
+      "description": "Fresh seasonal vegetables with dressing",
+      "price": 60
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 4,
+    "fields": {
+      "name": "Beef Burger",
+      "description": "Grilled beef patty with lettuce and tomato",
+      "price": 90
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 5,
+    "fields": {
+      "name": "Chicken Wings",
+      "description": "Crispy wings with BBQ sauce",
+      "price": 85
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 6,
+    "fields": {
+      "name": "Spaghetti Bolognese",
+      "description": "Pasta with meat sauce and parmesan",
+      "price": 100
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 7,
+    "fields": {
+      "name": "Sushi Roll",
+      "description": "Salmon, avocado, and rice",
+      "price": 120
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 8,
+    "fields": {
+      "name": "Tomato Soup",
+      "description": "Creamy tomato soup with herbs",
+      "price": 50
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 9,
+    "fields": {
+      "name": "Grilled Chicken",
+      "description": "Chicken breast with steamed vegetables",
+      "price": 105
+    }
+  },
+  {
+    "model": "menu.menuitem",
+    "pk": 10,
+    "fields": {
+      "name": "Tiramisu",
+      "description": "Italian dessert with coffee and mascarpone",
+      "price": 65
+    }
+  }
+]
