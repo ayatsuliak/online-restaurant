@@ -139,14 +139,19 @@ Then, edit `.env` to set your own `SECRET_KEY`, `POSTGRES_PASSWORD`, etc.
 ```bash
 docker-compose up --build
 ```
-Visit the app at http://localhost:8000
 
 ### 4. Apply database migrations and create superuser
-
+Open another terminal and run the following commands to set up the database:
 ```bash
 docker-compose exec web python manage.py migrate
 docker-compose exec web python manage.py createsuperuser
 ```
+Also load sample menu items
+```bash
+docker-compose exec web python manage.py loaddata menu/fixtures/menu_items.json
+````
+Visit the app at http://localhost:8000
+
 ### 5. Access Admin Panel (optional)
 Visit http://localhost:8000/admin and log in with the superuser credentials you created.
 
@@ -160,6 +165,7 @@ No manual setup needed — both workers are configured in `docker-compose.yml`.
 ## 🧪 Running Tests
 Covered 94% of the codebase with tests.
 #### Run all tests
+Open another terminal and run:
 ```bash
 docker-compose run --rm web python manage.py test
 ```
