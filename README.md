@@ -35,6 +35,8 @@ online-restaurant/
 │    │ └── wsgi.py
 │    
 │    ├── menu/                      # Menu app
+│    │ ├── fixtures/
+│    │ │ └── menu_items.json        # Sample menu items
 │    │ ├── migrations/
 │    │ ├── templates/menu
 │    │ │ ├── base.html
