@@ -19,8 +19,6 @@ jobs:
           echo "REDIS_URL=redis://redis:6379" >> .env
           echo "EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend" >> .env
           echo "DEFAULT_FROM_EMAIL=restaurant@example.com" >> .env
-      - name: Make entrypoint executable
-        run: chmod +x app/entrypoint.sh
       - name: Test
         run: docker compose run --rm web python manage.py test
       - name: flake8
