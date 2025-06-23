@@ -4,8 +4,19 @@ set -e
 echo "Waiting for PostgreSQL using psycopg2..."
 
 TRIES=0
-until python -c "import psycopg2; psycopg2.connect(dbname='${POSTGRES_DB}', user='${POSTGRES_USER}', password='${POSTGRES_PASSWORD}', host='db')" \
-    && echo "PostgreSQL is ready."; do
+until python -c "
+import psycopg2, os
+from urllib.parse import urlparse
+
+url = urlparse(os.environ['DATABASE_URL'])
+
+psycopg2.connect(
+    dbname=url.path[1:],
+    user=url.username,
+    password=url.password,
+    host=url.hostname,
+    port=url.port
+)" && echo "PostgreSQL is ready."; do
     TRIES=$((TRIES+1))
     if [ "$TRIES" -ge 30 ]; then
         echo "PostgreSQL did not become ready in time."
