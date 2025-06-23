@@ -9,16 +9,13 @@
             </div>
           {% endfor %}
         {% endif %}
-
         <form method="POST" id="order-form">
             {% csrf_token %}
-
             {% if form.non_field_errors %}
               <div class="alert alert-danger">
                 {{ form.non_field_errors }}
               </div>
             {% endif %}
-
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Create Order</legend>
                 {{ form|crispy }}
@@ -29,7 +26,6 @@
         </form>
     </div>
 {% endblock %}
-
 {% block extra_js %}
 <script>
 document.addEventListener("DOMContentLoaded", function () {

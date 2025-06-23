@@ -1,30 +1,22 @@
 {% extends "menu/base.html" %}
 {% load crispy_forms_tags %}
-
 {% block content %}
 <div class="content-section">
     <h3 class="border-bottom mb-4">Edit Profile</h3>
     <form method="POST">
         {% csrf_token %}
-
         {% if form.non_field_errors %}
             <div class="alert alert-danger">
                 {{ form.non_field_errors }}
             </div>
         {% endif %}
-
         {{ form|crispy }}
         {% if user.is_authenticated %}
             <a href="{% url 'password_change' %}" class="nav-link">Change Password</a>
         {% endif %}
-
-
         <div class="form-group">
             <button class="btn btn-outline-info" type="submit">Save Changes</button>
         </div>
     </form>
-
-
-
 </div>
 {% endblock %}
